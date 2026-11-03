@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy - Aquamaster AI Bridge</title>
+<meta name="description" content="How Aquamaster AI Bridge uses, stores and protects Google Drive data.">
+<style>
+  :root { --bg: #ffffff; --text: #1d2125; --muted: #5b6470; --line: #dde1e6; --accent: #0b5cad; --panel: #f5f7f9; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #15181c; --text: #e6e9ec; --muted: #a2abb5; --line: #2c3238; --accent: #6eaef0; --panel: #1d2126; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+  main, header, footer { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+  header { padding-top: 40px; }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 8px; }
+  h2 { font-size: 1.25rem; margin: 36px 0 8px; }
+  .lead { color: var(--muted); margin: 0; }
+  nav { margin: 20px 0 0; display: flex; gap: 20px; flex-wrap: wrap; }
+  a { color: var(--accent); }
+  code { background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 1px 5px; font-size: 0.92em; overflow-wrap: anywhere; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  th { font-weight: 600; }
+  footer { color: var(--muted); font-size: 0.9rem; padding-top: 32px; padding-bottom: 40px; border-top: 1px solid var(--line); margin-top: 48px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Privacy Policy</h1>
+  <p class="lead">Aquamaster AI Bridge &middot; Effective 3 November 2026</p>
+  <nav><a href="index.html">Home</a><a href="privacy.html">Privacy Policy</a></nav>
+</header>
+
+<main>
+  <h2>1. Who this policy covers</h2>
+  <p>Aquamaster AI Bridge ("the application") is a personal tool that runs only on its owner's
+  own Windows computer and connects only to the owner's own Google account. It is not offered
+  to the public, has no other users, and refuses to sign in with any account other than the
+  owner's. This policy describes how the application handles the Google user data it can
+  access.</p>
+
+  <h2>2. Google data the application accesses</h2>
+  <table>
+    <tr><th>Permission</th><th>What is accessed</th></tr>
+    <tr><td><code>drive.readonly</code></td><td>File names, IDs, owners, types and creation times
+    in the bridge's Commands and Results folders, and the text of command files in the Commands
+    folder.</td></tr>
+    <tr><td><code>drive.file</code></td><td>Result documents that the application itself creates
+    in the Results folder.</td></tr>
+    <tr><td>Account information</td><td>The email address of the signed-in account, used only to
+    confirm that it is the owner's account.</td></tr>
+  </table>
+  <p>Although <code>drive.readonly</code> technically allows reading any file in the owner's
+  Drive, the application only requests the folders configured for the bridge. Command files
+  larger than 64 KB, and file types other than Google Docs and plain text or JSON files, are
+  not read.</p>
+
+  <h2>3. How the data is used</h2>
+  <ul>
+    <li>To read commands placed in the Commands folder and check them against a fixed list of
+    allowed command types.</li>
+    <li>To answer allowed read-only status and diagnostic commands by creating a result document
+    in the Results folder.</li>
+    <li>To queue any other request for the owner's own review, with a notification on the
+    owner's computer and a short notice document in the Results folder that does not contain
+    the request text. Such requests are not carried out automatically.</li>
+    <li>To reduce the risk of processing the same command twice, by checking a local log and
+    the titles of existing result documents.</li>
+  </ul>
+  <p>Google data is not used for advertising, profiling, analytics or any purpose other than
+  operating the bridge for its owner. It is not used to train AI or machine learning models.</p>
+
+  <h2>4. Sharing and transfer</h2>
+  <p>The application does not sell, rent or share Google user data with anyone. It has no server
+  of its own and sends no data to any third-party service; it communicates only with Google's
+  APIs. Command files and results stay in the owner's Google Drive and on the owner's computer.
+  The owner may separately choose to review a queued request with an AI assistant of their own;
+  that is a manual action by the owner and not something the application does.</p>
+  <p>The use and transfer of information received from Google APIs adheres to the
+  <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services
+  User Data Policy</a>, including the Limited Use requirements.</p>
+
+  <h2>5. Storage and retention</h2>
+  <p>All data the application keeps is stored on the owner's computer:</p>
+  <ul>
+    <li>copies of downloaded command files;</li>
+    <li>a processing log with command IDs, Drive file IDs, file titles, result status and
+    timestamps;</li>
+    <li>copies of the result documents it created;</li>
+    <li>a list of queued requests (command ID, Drive file ID and time);</li>
+    <li>an operational log of each check (start and end time, number of commands, errors);</li>
+    <li>the OAuth sign-in credentials described in section 6.</li>
+  </ul>
+  <p>These local files are kept until the owner deletes them; the application has no automatic
+  deletion schedule. Result documents in Google Drive remain in the owner's Drive until the owner
+  deletes them there. The application itself never deletes or moves files in Google Drive.</p>
+
+  <h2>6. Security</h2>
+  <ul>
+    <li>Sign-in uses Google's OAuth 2.0 flow for desktop applications with PKCE and a state
+    check, through a temporary local address on the owner's computer.</li>
+    <li>The OAuth refresh token is stored encrypted with Windows Data Protection (DPAPI), so it can
+    only be decrypted by the owner's Windows user account on that computer. Access tokens are
+    kept in memory only.</li>
+    <li>The OAuth client file and token are kept in a local folder that is excluded from source
+    control.</li>
+    <li>All communication with Google uses HTTPS.</li>
+    <li>Each request to Google is checked against a fixed list of allowed operations. The
+    application contains no code to delete, trash, share, copy or edit existing Drive files, or to
+    change file permissions.</li>
+    <li>The owner can stop the application at any time with a local stop switch.</li>
+  </ul>
+  <p>No method of storage or transmission is completely secure, and these measures cannot
+  guarantee absolute security.</p>
+
+  <h2>7. Revoking access and deleting data</h2>
+  <ul>
+    <li>Access can be revoked at any time in the Google Account under
+    <a href="https://myaccount.google.com/permissions">Third-party apps &amp; services</a>.</li>
+    <li>The application also has a local command that revokes its token with Google and deletes
+    the stored token from the computer.</li>
+    <li>Local copies and logs can be deleted by the owner from the computer. Result documents can
+    be deleted by the owner in Google Drive.</li>
+  </ul>
+
+  <h2>8. Changes to this policy</h2>
+  <p>If the way the application uses Google data changes, this page will be updated and the
+  effective date above will change.</p>
+
+  <h2>9. Contact</h2>
+  <p>Questions about this policy or the application:
+  <a href="mailto:khalfayev@gmail.com">khalfayev@gmail.com</a></p>
+</main>
+
+<footer>
+  Aquamaster AI Bridge &middot; <a href="index.html">Home</a> &middot; Last updated 3 November 2026
+</footer>
+</body>
+</html>

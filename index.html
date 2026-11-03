@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aquamaster AI Bridge</title>
+<meta name="description" content="Aquamaster AI Bridge is a private Google Drive bridge that runs on its owner's personal Windows computer.">
+<style>
+  :root { --bg: #ffffff; --text: #1d2125; --muted: #5b6470; --line: #dde1e6; --accent: #0b5cad; --panel: #f5f7f9; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #15181c; --text: #e6e9ec; --muted: #a2abb5; --line: #2c3238; --accent: #6eaef0; --panel: #1d2126; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+  main, header, footer { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+  header { padding-top: 40px; }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 8px; }
+  h2 { font-size: 1.25rem; margin: 36px 0 8px; }
+  p, li { color: var(--text); }
+  .lead { color: var(--muted); font-size: 1.1rem; margin: 0; }
+  nav { margin: 20px 0 0; display: flex; gap: 20px; flex-wrap: wrap; }
+  a { color: var(--accent); }
+  code { background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 1px 5px; font-size: 0.92em; overflow-wrap: anywhere; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  th { font-weight: 600; }
+  .note { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 12px 16px; }
+  footer { color: var(--muted); font-size: 0.9rem; padding-top: 32px; padding-bottom: 40px; border-top: 1px solid var(--line); margin-top: 48px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Aquamaster AI Bridge</h1>
+  <p class="lead">A private Google Drive bridge that runs on its owner's personal Windows computer.</p>
+  <nav><a href="index.html">Home</a><a href="privacy.html">Privacy Policy</a></nav>
+</header>
+
+<main>
+  <h2>Purpose</h2>
+  <p>Aquamaster AI Bridge lets the owner of Aquamaster send short, structured commands from a
+  chat assistant to their own Windows computer, and receive the results, using a folder in the
+  owner's Google Drive as the exchange point. It is a personal tool for one person's own
+  account. It is not offered to the public and it accepts no other Google account.</p>
+
+  <h2>How it works</h2>
+  <ol>
+    <li>A command is saved as a small file in the <code>Commands</code> folder of the owner's
+    Google Drive folder "Aquamaster AI Bridge".</li>
+    <li>A Python program on the owner's computer, started by Windows Task Scheduler every five
+    minutes while the owner is signed in to Windows, lists that folder and downloads new command
+    files (at most 64 KB each).</li>
+    <li>The program checks each command against a fixed list of allowed command types. Simple
+    read-only status and diagnostic commands (for example a connectivity test) are answered
+    automatically. Anything else
+    is only queued: the owner sees a Windows notification and a short notice in the Results
+    folder. It is not carried out automatically.</li>
+    <li>The answer is written as a new Google Doc in the <code>Results</code> folder of the same
+    Drive folder.</li>
+    <li>Each processed command is recorded in a local log on the computer, and the Results
+    folder is checked for an existing result before a new one is written. These checks reduce
+    the risk of a command being processed twice; they are not an absolute guarantee.</li>
+  </ol>
+
+  <h2>Google permissions requested</h2>
+  <table>
+    <tr><th>Scope</th><th>Why it is needed</th></tr>
+    <tr><td><code>drive.readonly</code></td><td>To list the Commands and Results folders and to
+    read the command files the owner (or the owner's assistant) placed there.</td></tr>
+    <tr><td><code>drive.file</code></td><td>To create result documents in the Results folder.
+    This scope only covers files the application itself creates.</td></tr>
+  </table>
+  <p>The program contains no code to delete, trash, share, copy or edit existing Drive files, or
+  to change their permissions. Its requests to Google are limited to a fixed list: list files,
+  read or export a file's text, create a file, read the account's email address, and refresh or
+  revoke its own sign-in.</p>
+
+  <h2>Who can use it</h2>
+  <div class="note">
+    <p>The application is used only by its owner. It runs on the owner's computer, signs in only to
+    the owner's Google account, and refuses to continue if a different account is chosen during
+    sign-in. There is no website, server or hosted service behind it; this page only describes it.</p>
+  </div>
+
+  <h2>Privacy</h2>
+  <p>How Google user data is used, stored and protected is described in the
+  <a href="privacy.html">Privacy Policy</a>.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this application: <a href="mailto:khalfayev@gmail.com">khalfayev@gmail.com</a></p>
+</main>
+
+<footer>
+  Aquamaster AI Bridge &middot; <a href="privacy.html">Privacy Policy</a> &middot; Last updated 3 November 2026
+</footer>
+</body>
+</html>
